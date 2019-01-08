@@ -90,6 +90,10 @@ public class Acceuil {
 					List<Personnage> liste = Client.liste_perso_connecté(socket);
 					frame.setVisible(false);
 					ListePersonnage wind = new ListePersonnage(liste);
+					/*for (Personnage personnage : liste) {
+						System.out.println(personnage.getProfil().getDescription() +" "+ personnage.getPseudo());
+					}
+					*/
 					//wind.getFrame().setVisible(true);
 				
 					socket.close();

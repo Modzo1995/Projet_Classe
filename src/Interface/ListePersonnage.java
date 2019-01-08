@@ -24,19 +24,17 @@ public class ListePersonnage extends JFrame implements ActionListener
 	private JButton qt;
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
-	private Frame frame;
 	
 	
 	public ListePersonnage(List <Personnage> liste)
 	{
-		frame = new Frame();
 		panneau1=new JPanel();
 		panneau2=new JPanel();
 		qt = new JButton("Quitter");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		qt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				table.setVisible(false);
+				dispose();
 				Acceuil p = new Acceuil();
 				p.getFrame().setVisible(true);
 			}
@@ -63,8 +61,7 @@ public class ListePersonnage extends JFrame implements ActionListener
 			  modele.setValueAt(per.getProfil().getDescription(), ligne, 1);
 			  modele.setValueAt(per.getCapacite().getNombreVie(), ligne, 2);
 			  ligne++;
-		  }
-		 
+		  }	 
 		  
 		  
 		  setTitle("Liste des Personnages");
@@ -102,8 +99,9 @@ public class ListePersonnage extends JFrame implements ActionListener
 		        	//frame.setVisible(false);
 					List<Personnage> liste = Client.liste_perso_connecté(socket);
 		        	ListePersonnage p = new ListePersonnage(liste);
+		        	dispose();
 		        	p.setVisible(true);
-		        	dispose();	
+		        		
 					socket.close();
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
@@ -111,9 +109,6 @@ public class ListePersonnage extends JFrame implements ActionListener
 					}
 		        }
 		    }, 5000L, 5000L);
-	}
-	public Frame getFrame() {
-		return this.frame;
 	}
 	
     public void actionPerformed(ActionEvent e)
